@@ -1,25 +1,68 @@
 <template>
-  <view>这是首页</view>
+  <view class="cates_box">
+    <!-- 左侧 -->
+    <scroll-view class="left" scroll-y>
+        <van-sidebar active="{{ active }}" bind:change="onChange">
+          <van-sidebar-item title="{{item.cat_name}}" wx:for='{{cateList}}' wx:key='index'/>
+        </van-sidebar>
+    </scroll-view>
+    <!-- 右侧 -->
+    <scroll-view class="right" scroll-y>
+      <view class="second_item" wx:for='{{secondCate}}' wx:key='index'>
+        <text class="tit">/{{item.cat_name}}/</text>
+        <van-grid column-num="3" border="{{ false }}">
+          <van-grid-item url='/pages/goods_list/index?cat_id={{item.cat_id}}' use-slot wx:for="{{ item.children }}" wx:key='index'>
+            <image src="{{item.cat_icon}}">
+            </image>
+            <text>{{item.cat_name}}</text>
+          </van-grid-item>
+        </van-grid>
+      </view>
+    </scroll-view>
+  </view>
 </template>
 
 <script>
 
 import wepy from 'wepy'
-
+import mix from '../../mixins/tabs/cates.js'
 export default class Home extends wepy.page {
-  data = {
-  }
-
-  config = {
-  }
-
-  methods = {
-
-  }
+  mixins = [mix ]
 }
 
 </script>
 
 <style lang='less'>
-
+page{
+  height: 100%;
+}
+.cates_box {
+  height: 100%;
+  display: flex;
+  .left{
+    width: 80px;
+    height: 100%;
+  }
+  .right {
+    text-align: center;
+    .tit{
+      line-height: 80rpx;
+      font-size: 28rpx;
+      margin: 20rpx 0;
+    }
+    .van-grid-item__content{
+      padding: 5px 8px !important;
+    }
+    image {
+      width: 120rpx;
+      height: 120rpx;
+    }
+    text {
+      line-height: 70rpx;
+      font-size: 30rpx;
+      height: 70rpx;
+      overflow: hidden;
+    }
+  }
+}
 </style>

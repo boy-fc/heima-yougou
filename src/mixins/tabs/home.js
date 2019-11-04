@@ -11,6 +11,12 @@ export default class Home extends wepy.mixin {
       }
     
       methods = {
+        // 商品跳转事件
+        goGoodsDetail (url) {
+          wepy.navigateTo({
+            url
+          })
+        }
       }
       // 获取轮播图接口数据
       async getSwiperData(){
@@ -39,12 +45,7 @@ export default class Home extends wepy.mixin {
         this.floorData = res.message
         this.$apply()
       }
-      // 商品跳转事件
-      goGoodsDetail (url) {
-        wepy.navigateTo({
-          url
-        })
-      }
+      
       onLoad(){
         this.getSwiperData()
         this.getCatesData()

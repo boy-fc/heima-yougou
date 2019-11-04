@@ -1,25 +1,56 @@
 <template>
-  <view>这是首页</view>
+  <view>
+    <van-search
+      value="{{ value }}"
+      placeholder="请输入搜索关键词"
+      show-action
+      bind:search="onSearch"
+      bind:cancel="onCancel"
+      bind:change='onChange'
+    />
+  </view>
+  <!-- 搜索列表 -->
+  <van-cell-group hidden="{{value === ''}}">
+    <van-cell url='/pages/goods_detail/index?{{item.goods_id}}' title="{{item.goods_name}}}"
+     wx:for='{{suggestList}}' wx:key='index'/>
+  </van-cell-group>
+  <!-- 搜索历史记录 -->
+  <view class="history" hidden="{{value !== ''}}">
+    <view class="top">
+        <text>搜索历史</text>
+        <van-icon name="delete" bind:click='deleteHistory'/>
+    </view>
+    <view class="bottom">
+      <van-tag size="medium" wx:for='{{historyList}}' wx:key='index'>{{item}}</van-tag>
+    </view>
+    <van-dialog id="van-dialog" />
+  </view>
 </template>
 
 <script>
 
 import wepy from 'wepy'
-
-export default class Home extends wepy.page {
-  data = {
-  }
-
-  config = {
-  }
-
-  methods = {
-
-  }
+import mix from '../../mixins/tabs/search'
+export default class Search extends wepy.page {
+  mixins = [mix]
 }
 
 </script>
 
 <style lang='less'>
-
+.history{
+  padding: 20rpx 16rpx;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    text{
+      font-size: 30rpx;
+    }
+  }
+  .bottom {
+    .van-tag{
+      margin-right: 16rpx;
+    }
+  }
+}
 </style>
