@@ -29,13 +29,13 @@ export default class extends wepy.mixin {
         // 点击搜索按钮的时候触发
         onSearch(){
             if (this.value.trim().length == 0) {
-                return
+                return this.suggestList = []
             }
             this.historyList.unshift(this.value)
             this.historyList = this.historyList.splice(0,10)
             wepy.setStorageSync('historyList',this.historyList)
             wepy.navigateTo({
-                url:'/pages/goods_list?query='+this.value
+                url:'/pages/goods_list/index?query='+this.value
             })
         },
         // 点击删除搜索历史记录
@@ -46,9 +46,16 @@ export default class extends wepy.mixin {
               }).then(() => {
                 this.historyList = []
                 wepy.setStorageSync('historyList',this.historyList)
+                this.$apply()
               }).catch(() => {
                 return
               });
+        },
+        // 跳转页面
+        goGoodList(query){
+            wepy.navigateTo({
+                url:'/pages/goods_list/index?query='+query
+            })
         }
     }
     onLoad(){

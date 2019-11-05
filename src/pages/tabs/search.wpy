@@ -21,7 +21,7 @@
         <van-icon name="delete" bind:click='deleteHistory'/>
     </view>
     <view class="bottom">
-      <van-tag size="medium" wx:for='{{historyList}}' wx:key='index'>{{item}}</van-tag>
+      <van-tag @tap='goGoodList({{item}})' size="medium" wx:for='{{historyList}}' wx:key='index'>{{item}}</van-tag>
     </view>
     <van-dialog id="van-dialog" />
   </view>
