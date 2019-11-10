@@ -66,12 +66,14 @@
             <van-goods-action-icon
                 icon="cart-o"
                 text="购物车"
+                link-type='switchTab'
+                url='/pages/tabs/carts'
                 bind:click="onClickIcon"
             />
             <van-goods-action-button
                 text="加入购物车"
                 type="warning"
-                bind:click="onClickButton"
+                bind:click="addTocart"
             />
             <van-goods-action-button
                 text="立即购买"

@@ -34,7 +34,10 @@ export default class extends wepy.app {
         "van-goods-action-icon": "./components/vant/goods-action-icon/index",
         "van-goods-action-button": "./components/vant/goods-action-button/index",
         "van-tab": "./components/vant/tab/index",
-        "van-tabs": "./components/vant/tabs/index"
+        "van-tabs": "./components/vant/tabs/index",
+        "van-stepper": "./components/vant/stepper/index",
+        "van-checkbox": "./components/vant/checkbox/index",
+        "van-swipe-cell": "./components/vant/swipe-cell/index"
     },
     window: {
       backgroundTextStyle: 'light',
@@ -80,9 +83,50 @@ export default class extends wepy.app {
   }
 
   globalData = {
-    userInfo: null
+    // 用来储存商品列表
+    cart:[]
   }
-
+  // 如果想操作全局的数据，建议在全局定义方法，操作全局的数据
+  addTocart(goods){
+    const index = this.globalData.cart.findIndex(item =>{
+      return item.id == goods.goods_id
+    })
+    if (index == -1) {
+      const obj = {
+      id:goods.goods_id,
+      count:1,
+      price:goods.goods_price,
+      name:goods.goods_name,
+      pic:goods.goods_big_logo,
+      isCheck:true
+      }
+      this.globalData.cart.push(obj)
+    }else{
+      this.globalData.cart[index].count++
+    }
+   this.saveCart()
+  }
+  saveCart(){
+     wepy.setStorageSync('cart',this.globalData.cart)
+  }
+  // 全局的更新数量的方法
+  updateCount(id,count){
+    // 通过id查找到要修改的索引
+    const index = this.globalData.cart.findIndex(item =>{
+      return item.id == id
+    })
+    // 通过索引去修改这一项的商品数量
+    this.globalData.cart[index].count = count
+    this.saveCart()
+  }
+  // 全局的更新复选框状态的方法
+  updateCheckbox(id,state){
+    const index = this.globalData.cart.findIndex(item =>{
+      return item.id == id
+    })
+    this.globalData.cart[index].isCheck = state
+    this.saveCart()
+  }
   constructor () {
     super()
     this.use('requestfix')
@@ -118,6 +162,7 @@ export default class extends wepy.app {
   }
 
   onLaunch() {
+    this.globalData.cart = wepy.getStorageSync('cart') || []
   }
 
 }

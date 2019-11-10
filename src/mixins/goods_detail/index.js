@@ -31,6 +31,12 @@ export default class Home extends wepy.mixin {
             this.addressInfo = res
             wepy.setStorageSync('addressInfo',res)
             this.$apply()
+        },
+        addTocart(){
+            // console.log(this.goods_detail);
+            // this.$parent.globalData.cart.push()
+            this.$parent.addTocart(this.goods_detail)
+            wepy.baseToast('已加入购物车','success')
         }
     }
     computed ={
