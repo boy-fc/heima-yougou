@@ -16,6 +16,10 @@ export default class Home extends wepy.mixin {
         // 复选框发生变化
         checkboxChange(e){
             this.$parent.updateCheckbox(e.target.dataset.id,e.detail)   
+        },
+        // 侧滑删除事件
+        deleteGoods(id){
+            this.$parent.updateGoods(id)
         }
     }
     computed = {

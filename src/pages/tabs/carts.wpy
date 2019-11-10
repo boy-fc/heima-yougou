@@ -24,7 +24,7 @@
             </view>
           </van-card>
         </van-cell-group>
-        <view slot="right" class="deleteStyle">删除</view>
+        <view slot="right" class="deleteStyle" @tap='deleteGoods({{item.id}})'>删除</view>
       </van-swipe-cell> 
     </view>
   </view>

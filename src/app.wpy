@@ -127,6 +127,14 @@ export default class extends wepy.app {
     this.globalData.cart[index].isCheck = state
     this.saveCart()
   }
+  // 删除购物车商品
+  updateGoods(id){
+    const index = this.globalData.cart.findIndex(item =>{
+      return item.id == id
+    })
+    this.globalData.cart.splice(index,1)  
+    this.saveCart()
+  }
   constructor () {
     super()
     this.use('requestfix')
