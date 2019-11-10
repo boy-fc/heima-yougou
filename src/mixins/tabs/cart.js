@@ -20,6 +20,10 @@ export default class Home extends wepy.mixin {
         // 侧滑删除事件
         deleteGoods(id){
             this.$parent.updateGoods(id)
+        },
+        // 全选
+        onFullChange(e){ 
+            this.$parent.fullChange(e.detail)
         }
     }
     computed = {
@@ -35,6 +39,10 @@ export default class Home extends wepy.mixin {
                 }
             })
             return total*100
+        },
+        // 全选
+        isFullCheck(){
+            return this.cart.every(item => item.isCheck)
         }
     }
     onLoad(){

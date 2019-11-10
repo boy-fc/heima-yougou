@@ -136,6 +136,12 @@ export default class extends wepy.app {
     this.globalData.cart.splice(index,1)  
     this.saveCart()
   }
+  // 全选数据
+  fullChange(status){
+    this.globalData.cart.forEach(item =>{
+      item.isCheck = status
+    })
+  }
   constructor () {
     super()
     this.use('requestfix')

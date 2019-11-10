@@ -32,7 +32,7 @@
         button-text="提交订单"
         bind:submit="onClickButton"
         tip="{{ false }}">
-        <van-checkbox style="margin-left:10px;" value="{{ checked }}" bind:change="onChange">全选</van-checkbox>
+        <van-checkbox style="margin-left:10px;" value="{{ isFullCheck }}" bind:change="onFullChange">全选</van-checkbox>
       </van-submit-bar>
     </view>
   </view>
