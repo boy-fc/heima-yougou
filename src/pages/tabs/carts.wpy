@@ -26,6 +26,14 @@
         </van-cell-group>
         <view slot="right" class="deleteStyle" @tap='deleteGoods({{item.id}})'>删除</view>
       </van-swipe-cell> 
+      <!-- 提交订单 -->
+      <van-submit-bar
+        price="{{ 3050 }}"
+        button-text="提交订单"
+        bind:submit="onClickButton"
+        tip="{{ false }}">
+        <van-checkbox style="margin-left:10px;" value="{{ checked }}" bind:change="onChange">全选</van-checkbox>
+      </van-submit-bar>
     </view>
   </view>
 </template>

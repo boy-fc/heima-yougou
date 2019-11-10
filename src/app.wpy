@@ -37,7 +37,8 @@ export default class extends wepy.app {
         "van-tabs": "./components/vant/tabs/index",
         "van-stepper": "./components/vant/stepper/index",
         "van-checkbox": "./components/vant/checkbox/index",
-        "van-swipe-cell": "./components/vant/swipe-cell/index"
+        "van-swipe-cell": "./components/vant/swipe-cell/index",
+        "van-submit-bar": "./components/vant/submit-bar/index"
     },
     window: {
       backgroundTextStyle: 'light',
