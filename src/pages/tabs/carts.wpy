@@ -28,7 +28,7 @@
       </van-swipe-cell> 
       <!-- 提交订单 -->
       <van-submit-bar
-        price="{{ 3050 }}"
+        price="{{ totalPrice }}"
         button-text="提交订单"
         bind:submit="onClickButton"
         tip="{{ false }}">

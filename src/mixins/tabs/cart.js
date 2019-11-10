@@ -25,6 +25,16 @@ export default class Home extends wepy.mixin {
     computed = {
         isEmpty() {
            return this.cart.length == 0 ? true:false
+        },
+        // 价格计算属性
+        totalPrice(){
+            let total = 0
+            this.cart.forEach(item => {
+                if (item.isCheck) {
+                    total += item.count * item.price
+                }
+            })
+            return total*100
         }
     }
     onLoad(){
