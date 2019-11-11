@@ -48,6 +48,16 @@ export default class Home extends wepy.mixin {
                 return provinceName+cityName+countyName+detailInfo
             }
            
+        },
+        // 购物车数量
+        goodsCount(){
+            var total = 0
+            this.$parent.globalData.cart.forEach(item =>{
+                if(item.isCheck){
+                  total +=item.count
+                }
+            })
+            return total
         }
     }
     // 获取商品列表

@@ -109,6 +109,7 @@ export default class extends wepy.app {
   }
   saveCart(){
      wepy.setStorageSync('cart',this.globalData.cart)
+     this.renderTabbarBadage()
   }
   // 全局的更新数量的方法
   updateCount(id,count){
@@ -176,8 +177,23 @@ export default class extends wepy.app {
     });
   }
 
+  // 设置购物车徽章
+  renderTabbarBadage(){
+    var total =0 
+    this.globalData.cart.forEach(item =>{
+      if(item.isCheck){
+        total +=item.count
+      }
+    })
+    wepy.setTabBarBadge({
+      index:3,
+      text:total+''
+    }).catch(err=>err)
+  }
+
   onLaunch() {
     this.globalData.cart = wepy.getStorageSync('cart') || []
+    this.renderTabbarBadage()
   }
 
 }

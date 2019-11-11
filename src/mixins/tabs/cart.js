@@ -24,6 +24,7 @@ export default class Home extends wepy.mixin {
         // 全选
         onFullChange(e){ 
             this.$parent.fullChange(e.detail)
+            this.$parent.renderTabbarBadage()
         }
     }
     computed = {
@@ -47,5 +48,8 @@ export default class Home extends wepy.mixin {
     }
     onLoad(){
         this.cart = this.$parent.globalData.cart
+    }
+    onShow(){
+        this.$parent.renderTabbarBadage()
     }
 }
