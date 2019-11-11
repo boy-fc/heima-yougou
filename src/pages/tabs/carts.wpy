@@ -30,7 +30,7 @@
       <van-submit-bar
         price="{{ totalPrice }}"
         button-text="提交订单"
-        bind:submit="onClickButton"
+        bind:submit="onSubmitOrder"
         tip="{{ false }}">
         <van-checkbox style="margin-left:10px;" value="{{ isFullCheck }}" bind:change="onFullChange">全选</van-checkbox>
       </van-submit-bar>

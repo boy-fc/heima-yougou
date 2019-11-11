@@ -25,6 +25,15 @@ export default class Home extends wepy.mixin {
         onFullChange(e){ 
             this.$parent.fullChange(e.detail)
             this.$parent.renderTabbarBadage()
+        },
+        // 提交订单
+        onSubmitOrder(){
+            if (this.totalPrice <=0) {
+                return wepy.baseToast('请选择商品')
+            }
+            wepy.navigateTo({
+                url:'/pages/order/index'
+            })
         }
     }
     computed = {

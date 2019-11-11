@@ -17,6 +17,7 @@ export default class extends wepy.app {
       'pages/tabs/my',
       'pages/goods_detail/index',
       'pages/goods_list/index',
+      'pages/order/index'
     ],
     "usingComponents": {
         "van-sidebar": "./components/vant/sidebar/index",
