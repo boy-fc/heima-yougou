@@ -2,7 +2,8 @@ import wepy from 'wepy'
 
 export default class Home extends wepy.mixin {
     data = {
-        addressInfo:null
+        addressInfo:null,
+        cart:[]
     }
 
     config = {
@@ -11,8 +12,8 @@ export default class Home extends wepy.mixin {
     methods = {
         // 选择收货地址
         async chooseAddress(){
-            const res = await wepy.chooseAddress().catch(err=>err)
-            if (res.errMag !== 'chooseAddress:ok') {
+            const res = await wepy.chooseAddress().catch(err=>err)         
+            if (res.errMsg !== 'chooseAddress:ok') {
                 return wepy.baseToast('请填写收货地址')
             }
             wepy.baseToast('已选择收货地址')
@@ -41,6 +42,10 @@ export default class Home extends wepy.mixin {
     onLoad () {
         // data中需要定义addressInfo
         this.addressInfo = wepy.getStorageSync('addressInfo') || null
+        // data中要定义cart
+        this.cart = this.$parent.globalData.cart.filter(item =>{
+            return item.isCheck
+          })
       }
       
 }
